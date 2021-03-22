@@ -23,8 +23,15 @@ for servoKey, servo in config["servos"].items():
   servoKit.servo[servo["port"]].set_pulse_width_range(servo["min"], servo['max'])
   # servoKit.servo[servo["port"]].angle = random.randint(servo["min"], servo['max'])
 
-with open(os.path.join(os.path.dirname(__file__), 'servo-positions.json')) as f:
-  currentPosition = json.load(f)
+servoPositionsPath = os.path.join(os.path.dirname(__file__), 'servo-positions.json')
+if os.path.exists(servoPositionsPath) and os.path.isfile(servoPositionsPath):
+  with open(servoPositionsPath) as f:
+    currentPosition = json.load(f)
+elif:
+  currentPosition = {
+    pan: config["servos"]["pan"]["home"],
+    tilt: config["servos"]["pan"]["tilt"]
+  }
 
 # Update positions
 # TODO: not sure if need to clamp the values
@@ -41,5 +48,5 @@ elif args.direction == 'bottom':
   currentPosition['tilt'] += config["stepSize"]
   servoKit.servo[config["servos"]["tilt"]["port"]].angle = currentPosition['tilt']
 
-with open(os.path.join(os.path.dirname(__file__), 'servo-positions.json')) as f:
+with open(servoPositionsPath) as f:
   json.dump(currentPosition, f)

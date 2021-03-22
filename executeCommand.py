@@ -25,7 +25,7 @@ for servoKey, servo in config["servos"].items():
 
 servoPositionsPath = os.path.join(os.path.dirname(__file__), 'servo-positions.json')
 if os.path.exists(servoPositionsPath) and os.path.isfile(servoPositionsPath):
-  with open(servoPositionsPath) as f:
+  with open(servoPositionsPath, 'r') as f:
     currentPosition = json.load(f)
 else:
   currentPosition = {
@@ -48,5 +48,5 @@ elif args.direction == 'bottom':
   currentPosition['tilt'] += config["stepSize"]
   servoKit.servo[config["servos"]["tilt"]["port"]].angle = currentPosition['tilt']
 
-with open(servoPositionsPath) as f:
+with open(servoPositionsPath, 'w') as f:
   json.dump(currentPosition, f)

@@ -4,7 +4,6 @@ import random
 import argparse
 from adafruit_servokit import ServoKit
 
-
 # Parse given cli arguments
 # E.g python3 ./executeCommand.py --direction=up
 parser = argparse.ArgumentParser()
@@ -24,7 +23,8 @@ for servoKey, servo in config["servos"].items():
   servoKit.servo[servo["port"]].set_pulse_width_range(servo["min"], servo['max'])
   # servoKit.servo[servo["port"]].angle = random.randint(servo["min"], servo['max'])
 
-currentPosition = readLastPositionsFile()
+with open(os.path.join(os.path.dirname(__file__), 'servo-positions.json')) as f:
+  currentPosition = json.load(f)
 
 # Update positions
 # TODO: not sure if need to clamp the values
@@ -41,17 +41,5 @@ elif args.direction == 'bottom':
   currentPosition['tilt'] += config["stepSize"]
   servoKit.servo[config["servos"]["tilt"]["port"]].angle = currentPosition['tilt']
 
-updatePositionsFile(currentPosition)
-
-def readLastPositionsFile ():
-  with open(os.path.join(os.path.dirname(__file__), 'servo-positions.json')) as f:
-    config = json.load(f)
-  # TODO: read alternatives
-  return config
-
-def updatePositionsFile (tilt, pan):
-  with open(os.path.join(os.path.dirname(__file__), 'servo-positions.json')) as f:
-    json.dump({tilt, pan}, f)
-
-
-# python3 ./arguments-test.py --direction=up --value=1
+with open(os.path.join(os.path.dirname(__file__), 'servo-positions.json')) as f:
+  json.dump(currentPosition, f)

@@ -16,8 +16,8 @@ Servo port mapping:
 ## Setup
 
 ```bash
-# Download the project
-git clone git@github.com:renarsvilnis/motioneye-servo-controls.git
+# Download the project (using git will make it easier to update in the future)
+git clone https://github.com/renarsvilnis/motioneye-servo-controls.git
 cd ./motioneye-servo-controls
 
 # Install dependencies

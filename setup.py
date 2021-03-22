@@ -43,9 +43,28 @@ with open('./config.json') as f:
 print('Setting up motion shell scripts')
 # Create executable shop for each direction
 # Docs: https://github.com/ccrisan/motioneye/wiki/Action-Buttons
-createDirectionFileIfNotExists(config['motionEyePath'], 'left')
-createDirectionFileIfNotExists(config['motionEyePath'], 'right')
-createDirectionFileIfNotExists(config['motionEyePath'], 'top')
-createDirectionFileIfNotExists(config['motionEyePath'], 'bottom')
+# createDirectionFileIfNotExists('./actions', 'left')
+# createDirectionFileIfNotExists('./actions', 'right')
+# createDirectionFileIfNotExists('./actions', 'top')
+# createDirectionFileIfNotExists('./actions', 'bottom')
 
+# createDirectionFileIfNotExists(config['motionEyePath'], 'left')
+# createDirectionFileIfNotExists(config['motionEyePath'], 'right')
+# createDirectionFileIfNotExists(config['motionEyePath'], 'top')
+# createDirectionFileIfNotExists(config['motionEyePath'], 'bottom')
 
+def setupDirection (dirPath, direction):
+  srcPath = os.path.join(pathlib.Path(__file__).parent.absolute(), f'actions/{direction}.sh')
+  dstPath = os.path.join(dirPath, f'{direction}.sh')
+
+  # Make the new file executable by running "chmod -x" on it
+  st = os.stat(dstPath)
+  os.chmod(dstPath, st.st_mode | stat.S_IEXEC)
+
+  os.symlink(srcPath, dstPath)
+
+# TODO: read all files in folder and iterate instead of manual running them?
+setupDirection(config['motionEyePath'], 'left')
+setupDirection(config['motionEyePath'], 'right')
+setupDirection(config['motionEyePath'], 'top')
+setupDirection(config['motionEyePath'], 'bottom')

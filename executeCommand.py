@@ -1,4 +1,5 @@
 import json
+import os
 import random
 import argparse
 from adafruit_servokit import ServoKit
@@ -43,13 +44,13 @@ elif args.direction == 'bottom':
 updatePositionsFile(currentPosition)
 
 def readLastPositionsFile ():
-  with open('servo-positions.json', 'r') as f:
+  with open(os.path.join(__file__, 'servo-positions.json')) as f:
     config = json.load(f)
   # TODO: read alternatives
   return config
 
 def updatePositionsFile (tilt, pan):
-  with open('servo-positions.json', 'w') as f:
+  with open(os.path.join(__file__, 'servo-positions.json')) as f:
     json.dump({tilt, pan}, f)
 
 

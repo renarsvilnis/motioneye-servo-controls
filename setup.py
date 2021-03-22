@@ -37,7 +37,7 @@ def createDirectionFileIfNotExists (dirPath, direction):
   os.chmod(filePath, st.st_mode | stat.S_IEXEC)
 
 # Load config
-with open('./config.json') as f:
+with open(os.path.join(__file__, 'config.json')) as f:
   config = json.load(f)
 
 print('Setting up motion shell scripts')

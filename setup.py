@@ -22,7 +22,7 @@ def createDirectionFileIfNotExists (dirPath, direction):
   # https://stackoverflow.com/a/3430395
   # commandPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'executeCommand.py')
   # commandPath = os.path.join(os.path.abspath(os.getcwd()), 'executeCommand.py')
-  commandPath = os.path.join(pathlib.Path(__file__).parent.absolute()), 'executeCommand.py')
+  commandPath = os.path.join(pathlib.Path(__file__).parent.absolute(), 'executeCommand.py')
 
   # Create action
   with open(filePath, "w") as f:

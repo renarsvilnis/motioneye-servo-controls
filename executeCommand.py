@@ -27,16 +27,16 @@ currentPosition = readLastPositionsFile()
 
 # Update positions
 # TODO: not sure if need to clamp the values
-if args['direction'] == 'left':
+if args.direction == 'left':
   currentPosition['pan'] -= config["stepSize"]
   servoKit.servo[config["servos"]["pan"]["port"]].angle = currentPosition['pan']
-elif args['direction'] == 'right':
+elif args.direction == 'right':
   currentPosition['pan'] += config["stepSize"]
   servoKit.servo[config["servos"]["pan"]["port"]].angle = currentPosition['pan']
-elif args['direction'] == 'top':
+elif args.direction == 'top':
   currentPosition['tilt'] -= config["stepSize"]
   servoKit.servo[config["servos"]["tilt"]["port"]].angle = currentPosition['tilt']
-elif args['direction'] == 'bottom':
+elif args.direction == 'bottom':
   currentPosition['tilt'] += config["stepSize"]
   servoKit.servo[config["servos"]["tilt"]["port"]].angle = currentPosition['tilt']
 

@@ -15,7 +15,7 @@ def createDirectionFileIfNotExists (dirPath, direction):
   filePath = os.path.join(dirPath, f'{direction}.sh')
 
   # Return early if file exists
-  if os.path.exists(filePath) and os.path.isfile(filePath) and args['force'] == False:
+  if os.path.exists(filePath) and os.path.isfile(filePath) and args.force == False:
     return
     
   commandPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'executeCommand.py')

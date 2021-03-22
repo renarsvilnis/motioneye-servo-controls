@@ -28,7 +28,7 @@ def createDirectionFileIfNotExists (dirPath, direction):
   with open(filePath, "w") as f:
     f.writelines([
       "#! /usr/bin/env bash\n",
-      f'python3 ${commandPath} --direction={direction}\n'
+      f'python3 {commandPath} --direction={direction}\n'
     ])
     f.close()
 

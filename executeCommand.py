@@ -27,7 +27,7 @@ servoPositionsPath = os.path.join(os.path.dirname(__file__), 'servo-positions.js
 if os.path.exists(servoPositionsPath) and os.path.isfile(servoPositionsPath):
   with open(servoPositionsPath) as f:
     currentPosition = json.load(f)
-elif:
+else:
   currentPosition = {
     pan: config["servos"]["pan"]["home"],
     tilt: config["servos"]["pan"]["tilt"]

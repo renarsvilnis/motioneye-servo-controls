@@ -29,8 +29,8 @@ if os.path.exists(servoPositionsPath) and os.path.isfile(servoPositionsPath):
     currentPosition = json.load(f)
 else:
   currentPosition = {
-    pan: config["servos"]["pan"]["home"],
-    tilt: config["servos"]["pan"]["tilt"]
+    "pan": config["servos"]["pan"]["home"],
+    "tilt": config["servos"]["tilt"]["home"]
   }
 
 # Update positions

@@ -1,0 +1,19 @@
+{
+  "motionEyePath": "/etc/motioneye",
+  "channelCount": 16,
+  "servos": {
+   "tilt": {
+    "port": 0,
+    "min": 0,
+    "max": 180,
+    "home": 90
+   },
+   "pan": {
+    "port": 1,
+    "min": 0,
+    "max": 180,
+    "home": 90
+   }
+  },
+  "stepSize": 5
+}

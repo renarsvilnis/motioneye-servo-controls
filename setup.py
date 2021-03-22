@@ -54,8 +54,8 @@ def setupDirection (dirPath, direction):
   dstPath = os.path.join(dirPath, f'{direction}.sh')
 
   # Make the new file executable by running "chmod -x" on it
-  st = os.stat(dstPath)
-  os.chmod(dstPath, st.st_mode | stat.S_IEXEC)
+  st = os.stat(srcPath)
+  os.chmod(srcPath, st.st_mode | stat.S_IEXEC)
 
   # TODO: Do cleanup if --force
 

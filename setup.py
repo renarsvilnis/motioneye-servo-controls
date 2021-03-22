@@ -2,14 +2,24 @@ import os
 import subprocess
 import json
 import stat
+import argparse
+
+# Parse given cli arguments
+# E.g python3 ./setup.py --force
+parser = argparse.ArgumentParser()
+parser.add_argument("-D", "--force", help="Overwrite create new files", action="store_true")
+# parser.add_argument("-V", "--value", help="By how many degrees (int) should move the servo in the given direction")
+args = parser.parse_args()
+
+print(args)
 
 def createDirectionFileIfNotExists (dirPath, direction):
   filePath = os.path.join(dirPath, f'{direction}.sh')
 
   # Return early if file exists
-  if os.path.exists(filePath) and os.path.isfile(filePath):
+  if os.path.exists(filePath) and os.path.isfile(filePath) and args["force"] == False:
     return
-
+    
   commandPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'executeCommand.py')
 
   # Create action

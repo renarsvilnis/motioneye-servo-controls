@@ -3,6 +3,7 @@ import subprocess
 import json
 import stat
 import argparse
+import pathlib
 
 # Parse given cli arguments
 # E.g python3 ./setup.py --force
@@ -17,8 +18,11 @@ def createDirectionFileIfNotExists (dirPath, direction):
   # Return early if file exists
   if os.path.exists(filePath) and os.path.isfile(filePath) and args.force == False:
     return
-    
-  commandPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'executeCommand.py')
+  
+  # https://stackoverflow.com/a/3430395
+  # commandPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'executeCommand.py')
+  # commandPath = os.path.join(os.path.abspath(os.getcwd()), 'executeCommand.py')
+  commandPath = os.path.join(pathlib.Path(__file__).parent.absolute()), 'executeCommand.py')
 
   # Create action
   with open(filePath, "w") as f:

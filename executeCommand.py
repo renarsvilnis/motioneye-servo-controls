@@ -50,7 +50,7 @@ def readLastPositionsFile ():
   return config
 
 def updatePositionsFile (tilt, pan):
-  with open(os.path.join(os.path.dirname(__file__) 'servo-positions.json')) as f:
+  with open(os.path.join(os.path.dirname(__file__), 'servo-positions.json')) as f:
     json.dump({tilt, pan}, f)
 
 

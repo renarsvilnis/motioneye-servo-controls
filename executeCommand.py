@@ -13,7 +13,7 @@ parser.add_argument("-D", "--direction", help="Direction of travel (enum) - up,d
 args = parser.parse_args()
 
 # Load config
-with open('./config.json') as f:
+with open(os.path.join(__file__, 'config.json')) as f:
   config = json.load(f)
 
 # Setup servos
